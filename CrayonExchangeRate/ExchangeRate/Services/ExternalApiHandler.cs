@@ -20,7 +20,7 @@ namespace ExchangeRate.Services
 
         public decimal GetExchangeRateOnDate(string date, string currencyFrom, string currencyTo)
         {
-            return GetResponseFromExternalApi<decimal>($"history?start_at={date}&end_at={date}&symbols={currencyFrom}&base={currencyTo}");
+            return GetResponseFromExternalApi<decimal>($"history?start_at={date}&end_at={date}&symbols={currencyTo}&base={currencyFrom}");
         }
 
         private T GetResponseFromExternalApi<T>(string request)
