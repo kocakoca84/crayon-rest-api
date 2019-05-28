@@ -190,6 +190,8 @@
     </Compile>
     <Compile Include="Models\Rate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ExchangeCalculationsHandler.cs" />
+    <Compile Include="Services\ExternalApiHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
