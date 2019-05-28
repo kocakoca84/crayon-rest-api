@@ -1,13 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using ExchangeRate.Models;
+﻿using ExchangeRate.Models;
 using ExchangeRate.Services;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace ExchangeRate.Controllers
 {
@@ -19,12 +13,6 @@ namespace ExchangeRate.Controllers
 
         public Rate Get([FromUri] string[] dates, string currencyFrom, string currencyTo)
         {
-            // TODO: handle request - extract data
-            // TODO: for each date, create new request to external API
-            // TODO: handle response of each
-            // TODO: sort and calculate min, max, average
-            // TODO: return response
-
             List<decimal> rates = new List<decimal>();
             foreach (var date in dates)
             {

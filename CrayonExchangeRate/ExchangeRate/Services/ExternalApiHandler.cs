@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Web;
-using Newtonsoft.Json;
 
 namespace ExchangeRate.Services
 {
@@ -21,10 +20,10 @@ namespace ExchangeRate.Services
 
         public decimal GetExchangeRateOnDate(string date, string currencyFrom, string currencyTo)
         {
-           return GetResponseFromExternalApi<decimal>($"history?start_at={date}&end_at={date}&symbols={currencyFrom}&base={currencyTo}");
+            return GetResponseFromExternalApi<decimal>($"history?start_at={date}&end_at={date}&symbols={currencyFrom}&base={currencyTo}");
         }
 
-        public T GetResponseFromExternalApi<T>(string request)
+        private T GetResponseFromExternalApi<T>(string request)
         {
             try
             {
