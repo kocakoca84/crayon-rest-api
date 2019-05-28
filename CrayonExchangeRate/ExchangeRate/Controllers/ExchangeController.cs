@@ -7,11 +7,14 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using ExchangeRate.Models;
+using ExchangeRate.Services;
 
 namespace ExchangeRate.Controllers
 {
     public class ExchangeController : ApiController
     {
+        private readonly ExchangeCalculationsHandler _exchangeCalculationsHandler = new ExchangeCalculationsHandler();
+
         public Rate Get([FromUri] string[] dates, string currencyFrom, string currencyTo)
         {
             // TODO: handle request - extract data
@@ -26,13 +29,17 @@ namespace ExchangeRate.Controllers
                 rates.Add(GetResponseFromExternalApi(date, currencyFrom, currencyTo));
             }
 
+            return _exchangeCalculationsHandler.GetNewRate(rates);
+        }
+
+        public Rate GetNewRate(List<decimal> rates)
+        {
             decimal minimum = rates.Min();
             decimal maximum = rates.Max();
-
             decimal sum = 0;
-            for (int i = 0; i < rates.Count; i++)
+            foreach (var rate in rates)
             {
-                sum += rates[i];
+                sum += rate;
             }
             decimal average = Math.Round(sum / rates.Count, 12);
 
